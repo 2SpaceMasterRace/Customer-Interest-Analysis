@@ -10,7 +10,7 @@
 
 # What is the MVP here ?
 
-<img hight="750" width="650" alt="jpg" align="right" src="https://user-images.githubusercontent.com/82216693/122651978-ce65ba80-d159-11eb-8843-8b90fd91b0ca.jpg"> 
+<img hight="700" width="600" alt="jpg" align="right" src="https://user-images.githubusercontent.com/82216693/122651978-ce65ba80-d159-11eb-8843-8b90fd91b0ca.jpg"> 
 
 - Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
 
