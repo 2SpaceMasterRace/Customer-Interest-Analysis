@@ -64,6 +64,7 @@ int main()
 	struct customer customer_data[MAX];
 	int option = 0, ageMin, ageMax, n, N, i;
 	while(option != -1){
+		i = 0;
 
 		// INPUTS:
 		printf("Enter 1 to add purchase details of the customer\n");
@@ -99,6 +100,14 @@ int main()
 				printf("%s, %ld, %d, %s, %s", customer_data[N].name,
 				customer_data[N].mobileNumber, customer_data[N].age,
 				customer_data[N].gender, customer_data[N].date);
+				
+				/*
+				for(int i=0; i<5; i++){ fgets(customer_data[N].items[i], 10,
+				stdin); }
+
+				for(int x=0; x<5; x++){ printf("%s ",
+				customer_data[N].items[x]); }
+				*/
 
 				break;
 
