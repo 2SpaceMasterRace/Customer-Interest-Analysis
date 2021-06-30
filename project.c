@@ -26,7 +26,6 @@
 #include <stdio.h>
 #include <string.h>
 #define MAX 100
-#define MIN 10
 
 /**
  * Implementation of a data-structure to store customer data
@@ -36,12 +35,17 @@
  *
  */
 struct customer{
+<<<<<<< HEAD
 	int 	;
 	char gender;
+=======
+	int age;
+	char gender[10];
+>>>>>>> c82b73b1ceddf60caed9ea90a7d03a7beb75fc87
 	char date[10];
-	char name[MIN+20];
-	char mobileNumber[MIN];
-	char items[MAX][MIN+10];
+	char name[30];
+	long mobileNumber;
+	char items[MAX][20];
 };
 
 /*
@@ -63,8 +67,9 @@ int main()
 {
     // driver code
 	struct customer customer_data[MAX];
-	int option = 0, ageMin, ageMax, n, N;
+	int option = 0, ageMin, ageMax, n, N, i;
 	while(option != -1){
+		i = 0;
 
 		// INPUTS:
 		printf("Enter 1 to add purchase details of the customer\n");
@@ -72,46 +77,47 @@ int main()
 		printf("Enter 3 to find the most visited customer\n");
 		printf("Enter 4 to print the list of items purchased by the give age range and gender\n");
 		printf("Enter 5 to find the age range of those who purchased the given item\n");
+		printf("Enter -1 to exit\n");
 		printf("Enter the option: ");
 
-		scanf("%i", &option);
-		while ((getchar()) != '\n');
+		scanf("%d", &option);
+		getchar();
 
 		switch(option){
 			case 1:
-				// INPUTS:
-				printf("\nEnter mobile number: ");
-				fgets(customer_data[N].mobileNumber, MIN, stdin);
-				while ((getchar()) != '\n');
 
-				printf("\nEnter name of the customer: ");
-				fgets(customer_data[N].name, MIN+10, stdin);
-				while ((getchar()) != '\n');
+				printf("Enter the name of the customer: ");
+				fgets(customer_data[N].name, 30, stdin);
 
-				printf("\nEnter the gender: ");
-				scanf("%c ", customer_data[N].gender);
-				while ((getchar()) != '\n');
+				printf("Enter the mobile number of the cutomer: ");
+				scanf("%ld", &customer_data[N].mobileNumber);
 
-				printf("\nEnter the date of purchase in the format(dd-mm-yyy): ");
-				fgets(customer_data[N].date, MIN, stdin);
-				while ((getchar()) != '\n');
+				printf("Enter the age of the customer: ");
+				scanf("%d", &customer_data[N].age);
+				getchar();
 
-/*
-				printf("Enter the number of items purchased: ");
-				scanf("%i", n);
+				printf("Enter the gender of the customer: ");
+				fgets(customer_data[N].gender, 10, stdin);
 
-				for(int i=0; i<n; i++){
-					printf("Enter the item %i ", i+1);
-					fgets(customer_data[N].items[i], MIN+10, stdin);
-				}
+				printf("Enter the purchase date: ");
+				fgets(customer_data[N].date, 10, stdin);
+
+				printf("%s, %ld, %d, %s, %s", customer_data[N].name,
+				customer_data[N].mobileNumber, customer_data[N].age,
+				customer_data[N].gender, customer_data[N].date);
+				
+				/*
+				for(int i=0; i<5; i++){ fgets(customer_data[N].items[i], 10,
+				stdin); }
+
+				for(int x=0; x<5; x++){ printf("%s ",
+				customer_data[N].items[x]); }
 				*/
 
-				printf("%s %s %c %s", customer_data[N].mobileNumber,
-				customer_data[N].name, customer_data[N].gender,
-				customer_data[N].date); 
+				break;
+
 		}
 
-		++N;
 
 	}
 	return 0;
