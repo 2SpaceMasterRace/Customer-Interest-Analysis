@@ -117,7 +117,6 @@ int main()
 	return 0;
 }
 
-/*
 void addCustomer(int mobileNumber, char name[], int age, char gender,char date[], char items[][MAX])
 {
 
@@ -147,10 +146,10 @@ char* itemsPurchasedInrange(struct customer data[], int ageMin,int ageMax, int g
 
 }
 
+
 int* ageRange(struct customer data[], int ageMin, int ageMax)
 {
 
-//code goes here @ user
+printf("Checking if this works with sublime 4");
 
 }
-*/
