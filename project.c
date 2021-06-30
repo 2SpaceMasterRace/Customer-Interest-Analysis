@@ -35,13 +35,18 @@
  *
  */
 struct customer{
-<<<<<<< HEAD
+// <<<<<<< testcase
+// <<<<<<< HEAD
 	int 	;
 	char gender;
-=======
+// =======
 	int age;
 	char gender[10];
->>>>>>> c82b73b1ceddf60caed9ea90a7d03a7beb75fc87
+// >>>>>>> c82b73b1ceddf60caed9ea90a7d03a7beb75fc87
+// =======
+	int age;
+	char gender[10];
+// >>>>>>> main
 	char date[10];
 	char name[30];
 	long mobileNumber;
