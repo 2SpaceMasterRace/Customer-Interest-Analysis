@@ -35,8 +35,18 @@
  *
  */
 struct customer{
+// <<<<<<< testcase
+// <<<<<<< HEAD
+	int 	;
+	char gender;
+// =======
 	int age;
 	char gender[10];
+// >>>>>>> c82b73b1ceddf60caed9ea90a7d03a7beb75fc87
+// =======
+	int age;
+	char gender[10];
+// >>>>>>> main
 	char date[10];
 	char name[30];
 	long mobileNumber;
@@ -118,7 +128,6 @@ int main()
 	return 0;
 }
 
-/*
 void addCustomer(int mobileNumber, char name[], int age, char gender,char date[], char items[][MAX])
 {
 
@@ -148,10 +157,42 @@ char* itemsPurchasedInrange(struct customer data[], int ageMin,int ageMax, int g
 
 }
 
+
 int* ageRange(struct customer data[], int ageMin, int ageMax)
 {
 
-//code goes here @ user
+// Part by Hari Varsha
+
+struct customer customer_itemdata;
+
+printf(" Enter the item you want to find the age range of : ");
+
+scanf( " %s ",customer_itemdata.item);
+
+for (int i = 0; i < customer_data[MAX]; ++i)
+{
+
+if(customer_data[i].item==customer_customer_itemdata.item)
+{
+
+if(customer_data[i].age>0 && customer_data[i].age<18)
+	printf(" ITEM BELONGS TO UNDER 18 CATEGORY \n ");
+
+else if (customer_data[i].age>18 && customer_data[i].age<25) 
+	printf(" ITEM BELONGS TO EARLY 20S CATEGORY \n ");
+
+else if (customer_data[i].age>25 && customer_data[i].age<30 ) 
+	printf(" ITEM BELONGS TO LATE 20S CATEGORY\n ");
+
+else if (customer_data[i].age>30 && customer_data[i].age<49 ) 
+	printf(" ITEM BELONGS TO MIDDLE AGE CATEGORY \n ");
+
+else if (customer_data[i].age>49 ) 
+	printf(" ITEM BELONGS TO ELDERLY CATEGORY \n ");
+
+else
+	printf(" ITEM NOT FOUND \n", );
 
 }
-*/
+
+}
