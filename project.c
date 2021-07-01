@@ -35,28 +35,17 @@
  *
  */
 struct customer{
-// <<<<<<< testcase
-// <<<<<<< HEAD
-	int 	;
-	char gender;
-// =======
 	int age;
 	char gender[10];
-// >>>>>>> c82b73b1ceddf60caed9ea90a7d03a7beb75fc87
-// =======
-	int age;
-	char gender[10];
-// >>>>>>> main
 	char date[10];
 	char name[30];
 	long mobileNumber;
 	char items[MAX][20];
 };
 
-/*
 // FUNCTION DEFINITIONS
-void add_customer(int mobileNumber, char name[], int age, char gender,char
-date[], char items[][20]);
+void add_customer(struct customer customer_data[], int x);
+/*
 
 char* frequentlyPurchasedItems(struct customer data[]);
 
@@ -90,51 +79,52 @@ int main()
 
 		switch(option){
 			case 1:
-
-				printf("Enter the name of the customer: ");
-				fgets(customer_data[N].name, 30, stdin);
-
-				printf("Enter the mobile number of the cutomer: ");
-				scanf("%ld", &customer_data[N].mobileNumber);
-
-				printf("Enter the age of the customer: ");
-				scanf("%d", &customer_data[N].age);
-				getchar();
-
-				printf("Enter the gender of the customer: ");
-				fgets(customer_data[N].gender, 10, stdin);
-
-				printf("Enter the purchase date: ");
-				fgets(customer_data[N].date, 10, stdin);
-
-				printf("%s, %ld, %d, %s, %s", customer_data[N].name,
+				add_customer(customer_data, N);
+				/*
+				printf("%s, %lu, %i, %s, %s\n", customer_data[N].name, 
 				customer_data[N].mobileNumber, customer_data[N].age,
 				customer_data[N].gender, customer_data[N].date);
-				
-				/*
-				for(int i=0; i<5; i++){ fgets(customer_data[N].items[i], 10,
-				stdin); }
-
-				for(int x=0; x<5; x++){ printf("%s ",
-				customer_data[N].items[x]); }
+				for(int i=0; i<3; i++){ printf("%s ", customer_data[N].items[i]); }
 				*/
-
 				break;
-
 		}
-
-
 	}
 	return 0;
 }
 
-void addCustomer(int mobileNumber, char name[], int age, char gender,char date[], char items[][MAX])
-{
+void add_customer(struct customer customer_data[], int x){
+	int n;
 
-//code goes here  @ user
+	printf("Enter the name of the customer: ");
+	fgets(customer_data[x].name, 30, stdin);
+	customer_data[x].name[strcspn(customer_data[x].name, "\n")] = 0;
 
+	printf("Enter the mobile number of the cutomer: ");
+	scanf("%ld", &customer_data[x].mobileNumber);
+
+	printf("Enter the age of the customer: ");
+	scanf("%d", &customer_data[x].age);
+	getchar();
+
+	printf("Enter the gender of the customer: ");
+	fgets(customer_data[x].gender, 10, stdin);
+	customer_data[x].gender[strcspn(customer_data[x].gender, "\n")] = 0;
+
+	printf("Enter the purchase date: ");
+	fgets(customer_data[x].date, 10, stdin);
+
+	printf("Enter the number of items: ");
+	scanf("%i", &n);
+	getchar();
+
+	for(int i=0; i<n; i++){
+		printf("Enter item %i: ", i+1);
+		fgets(customer_data[x].items[i], 10, stdin);
+		customer_data[x].items[i][strcspn(customer_data[x].items[0], "\n")] = 0;
+	}
 }
 
+/*
 char* frequentlyPurchasedItems(struct customer data[])
 {
 
@@ -183,3 +173,4 @@ int* ageRange(struct customer customer_data[])
 		}
 	}
 }
+*/
