@@ -158,7 +158,7 @@ char* itemsPurchasedInrange(struct customer data[], int ageMin,int ageMax, int g
 }
 
 
-int* ageRange(struct customer data[], int ageMin, int ageMax)
+int* ageRange(struct customer customer_data[])
 {
 
 // Part by Hari Varsha
@@ -166,33 +166,30 @@ int* ageRange(struct customer data[], int ageMin, int ageMax)
 struct customer customer_itemdata;
 
 printf(" Enter the item you want to find the age range of : ");
+scanf( "%s",customer_itemdata.items);
 
-scanf( " %s ",customer_itemdata.item);
-
-for (int i = 0; i < customer_data[MAX]; ++i)
+for (int i = 0; i < MAX; ++i)
 {
+  if(customer_data[i].items==customer_itemdata.items)
+  {
+    if(customer_data[i].age>0 && customer_data[i].age<18) 
+	           printf(" ITEM BELONGS TO UNDER 18 CATEGORY \n ");
+ 
+         else if (customer_data[i].age>18 && customer_data[i].age<25) 
+	                       printf(" ITEM BELONGS TO EARLY 20S CATEGORY \n ");
+          
+               else if (customer_data[i].age>25 && customer_data[i].age<30 ) 
+                             	printf(" ITEM BELONGS TO LATE 20S CATEGORY\n ");
 
-if(customer_data[i].item==customer_customer_itemdata.item)
-{
-
-if(customer_data[i].age>0 && customer_data[i].age<18)
-	printf(" ITEM BELONGS TO UNDER 18 CATEGORY \n ");
-
-else if (customer_data[i].age>18 && customer_data[i].age<25) 
-	printf(" ITEM BELONGS TO EARLY 20S CATEGORY \n ");
-
-else if (customer_data[i].age>25 && customer_data[i].age<30 ) 
-	printf(" ITEM BELONGS TO LATE 20S CATEGORY\n ");
-
-else if (customer_data[i].age>30 && customer_data[i].age<49 ) 
-	printf(" ITEM BELONGS TO MIDDLE AGE CATEGORY \n ");
-
-else if (customer_data[i].age>49 ) 
-	printf(" ITEM BELONGS TO ELDERLY CATEGORY \n ");
-
-else
-	printf(" ITEM NOT FOUND \n", );
-
+                    else if (customer_data[i].age>30 && customer_data[i].age<49 ) 
+	                                  printf(" ITEM BELONGS TO MIDDLE AGE CATEGORY \n ");
+                             
+                             else if (customer_data[i].age>49 ) 
+	                                 printf(" ITEM BELONGS TO ELDERLY CATEGORY \n ");
+                                  
+     else
+       printf(" ITEM NOT FOUND \n");
+    }
 }
-
+	
 }
