@@ -25,6 +25,7 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #define MAX 100
 
 /**
@@ -34,34 +35,64 @@
  * data-of-purchase and the list of items purchased.
  *
  */
-struct customer{
+typedef struct{
 	int age;
 	char gender[10];
 	char date[10];
 	char name[30];
 	long mobileNumber;
-	char items[MAX][20];
-};
+	int items[20];
+}customer;
+
+char ITEMS[MAX][10] = {"T-Shirt", "Shirt", "Jeans", "Jackets", "Pants"};
+char GENDER[2][7] = {"Male", "Gender"};
+
+void sort(int items[], int size){
+	int tmp, flag;
+	for(int i=0; i<size; i++){
+		flag = 1;
+		for(int j=0; j<size-1-i; j++){
+			if(items[j] > items[j+1]){
+				tmp = items[j];
+				items[j] = items[j+1];
+				items[j+1] = tmp;
+				flag = 0;
+			}
+		}
+		if(flag){ break; }
+	}
+}
+
+int* remove_duplicates(int arr[], int size){
+	int *new_items = (int*)malloc(size*sizeof(int)), j=0;
+	for(int i=0; i<size-1; i++){
+		if(arr[i] != arr[i-1]){
+			new_items[j++] = new_items[i];
+		}
+	}
+	new_items[j] = arr[size-1];
+	return new_items;
+}
 
 // FUNCTION DEFINITIONS
-void add_customer(struct customer customer_data[], int x);
+void add_customer(customer customer_data[], int x);
 /*
 
 char* frequentlyPurchasedItems(struct customer data[]);
-
 char* mostVisitedCustomer(struct customer data[]);
-
-char* itemsPurchasedInrange(struct customerData[], int ageMin,int ageMax, int gender);
 
 int* ageRange(struct customer data[], int ageMin, int ageMax);
 */
+void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
+int ageMax, char gender[]);
 
 
 int main()
 {
     // driver code
-	struct customer customer_data[MAX];
+	customer customer_data[MAX];
 	int option = 0, ageMin, ageMax, n, N, i;
+	char gender[10];
 	while(option != -1){
 		i = 0;
 
@@ -84,17 +115,50 @@ int main()
 				printf("%s, %lu, %i, %s, %s\n", customer_data[N].name, 
 				customer_data[N].mobileNumber, customer_data[N].age,
 				customer_data[N].gender, customer_data[N].date);
-				for(int i=0; i<3; i++){ printf("%s ", customer_data[N].items[i]); }
+				for(int i=0; i<3; i++){ printf("%i ", customer_data[N].items[i]); }
+				break;
 				*/
+				break;
+			case 2:
+				printf("Enter the gender: ");
+				fgets(gender, 10, stdin);
+				gender[strcspn(gender, "\n")] = 0;
+				scanf("%i", &ageMin);
+				scanf("%i", &ageMax);
+				itemsPurchasedInrange(customer_data, ageMin, N, ageMax, gender);
 				break;
 		}
 	}
 	return 0;
 }
 
-void add_customer(struct customer customer_data[], int x){
-	int n;
+void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
+int ageMax, char gender[]){
 
+	size_t size_in;
+	int items[MAX] = {}, *new_items;
+
+	for(int i=0; i<size; i++){
+		if(customer_data[i].age >= ageMin && customer_data[i].age <= ageMax &&
+		strcmp(customer_data[i].gender, gender) == 0){
+
+			size_in = sizeof(customer_data[i].items)/sizeof(customer_data[i].items[0]);
+			printf("%li %li \n", sizeof(customer_data[i].items),
+			sizeof(customer_data[i].items[0]));
+
+			for(int j=0; j<size_in; j++){
+				items[j] = customer_data[i].items[j];
+			}
+		}
+	}
+	
+	sort(items, size);
+	new_items = remove_duplicates(items, size);
+
+}
+
+void add_customer(customer customer_data[], int x){
+	int n;
 	printf("Enter the name of the customer: ");
 	fgets(customer_data[x].name, 30, stdin);
 	customer_data[x].name[strcspn(customer_data[x].name, "\n")] = 0;
@@ -115,12 +179,15 @@ void add_customer(struct customer customer_data[], int x){
 
 	printf("Enter the number of items: ");
 	scanf("%i", &n);
-	getchar();
-
 	for(int i=0; i<n; i++){
-		printf("Enter item %i: ", i+1);
-		fgets(customer_data[x].items[i], 10, stdin);
-		customer_data[x].items[i][strcspn(customer_data[x].items[0], "\n")] = 0;
+
+		printf("\nPress 1 for T-Shirt");
+		printf("\nPress 2 for Shirt");
+		printf("\nPress 3 for Jeans");
+		printf("\nPress 4 for Jackets");
+		printf("\nPress 5 for Pants");
+		printf("\nEnter the option: ");
+		scanf("%i", &customer_data[x].items[i]);
 	}
 }
 
