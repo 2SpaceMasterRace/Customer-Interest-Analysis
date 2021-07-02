@@ -2,7 +2,8 @@
 
 # What is this project? 
 
-"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio "
+Customer Interest Analysis is the final First Semester Project ( Group 3 )  of Electrical And Computer Engineering at Amrita Vishwa Vidyapeetham implementing what we have learnt throught the year by building a real world application  
+
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -10,26 +11,51 @@
 
 # What is the MVP here ?
 
-<img hight="700" width="600" alt="jpg" align="right" src="https://user-images.githubusercontent.com/82216693/122651978-ce65ba80-d159-11eb-8843-8b90fd91b0ca.jpg"> 
+   <img hight="750" width="650" alt="jpg" align="middle" src="https://user-images.githubusercontent.com/82216693/122651978-ce65ba80-d159-11eb-8843-8b90fd91b0ca.jpg"> 
 
-- Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
+- Companies can get a bigger picture of their audience and makes it easier to narrow down specific customer category to curate special offers  
 
-- Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt 
+- This application comes with the most core features that is essential on analysing the data given  
 
-- Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem 
+- All the variables of the customer market is factored in as per the instructions given to the group 
+
+                    
+
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 
 # Functionalities and ETA 
 
 <img hight="700" width="600" alt="jpg" align="right" src="https://user-images.githubusercontent.com/82216693/122652209-32d54980-d15b-11eb-8fb5-4f1fce338b2a.jpg"> 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 
-Suspendisse blandit mollis arcu vitae sollicitudin. Nulla lacinia pellentesque dui at volutpat. Morbi pulvinar faucibus arcu a laoreet. Nam a faucibus nisi. Curabitur ornare purus aliquam placerat volutpat.
+The Functionalities includes : 
 
+- *Add Purchase Details* 
 
+  Pretty self explantory, this function gets all the data from user required for analysis
+
+- *Find Most Frequently Purchased Items* 
+
+  The function to find the most purchased product for the majority of sales
+
+- *Find Most Visited Customer* 
+
+  To find the predominant audience base for the products 
+
+- *Find List Of Items Based On Frequency Count For A Given Age Gender Range* 
+
+  To find the products that has majority of shares given in a paticular customer base
  
+ - *Find Age Range Of Customers Who Purchased A Given Item* 
+   
+   To target the specific customers market based on the product sold 
+  
+ ETA is estimated to be 2 weeks working part time on it 
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -53,10 +79,12 @@ This project is licensed under the MIT License - see the MIT.md file for details
 
 @username - what they did
 
-@username - what they did
+@[2SpaceMasterRace](https://github.com/2SpaceMasterRace) - Find Age Range Of Customers Who Purchased A Given Item
 
 @username - what they did
 
 @username - what they did
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
