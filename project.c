@@ -8,9 +8,9 @@
  *
  * FUNCTIONALITIES:
  *  	1. ADD PURCHASE DETAILS
- *  	2. FIND MOST FREQUENTLY PURCHASED ITEMS
+ *  	2. FIND LIST OF ITEMS BASED ON FREQUENCY COUNT FOR A GIVEN AGE GENDER RANGE
  *  	3. FIND MOST VISITED CUSTOMER
- *  	4. FIND LIST OF ITEMS BASED ON FREQUENCY COUNT FOR A GIVEN AGE GENDER RANGE
+ *  	4. FIND MOST FREQUENTLY PURCHASED ITEMS
  *  	5. FIND AGE RANGE OF CUSTOMERS WHO PURCHASED A GIVEN ITEM
  *
  * @file main.cpp
@@ -80,15 +80,11 @@ int* freq(int arr[], int size, int* j){
 
 // FUNCTION DEFINITIONS
 void add_customer(customer customer_data[], int x);
-/*
-
-char* frequentlyPurchasedItems(struct customer data[]);
-char* mostVisitedCustomer(struct customer data[]);
-
-int* ageRange(struct customer data[], int ageMin, int ageMax);
-*/
+void frequentlyPurchasedItems(customer data[], int size);
+void mostVisitedCustomer(customer data[], int size);
+void ageRange(customer data[], int ageMin, int ageMax);
 void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
-int ageMax, char gender[]);
+                           int ageMax, char gender[]);
 
 
 int main()
@@ -102,9 +98,9 @@ int main()
 
 		// INPUTS:
 		printf("Enter 1 to add purchase details of the customer\n");
-		printf("Enter 2 to find most frequently purchased item\n");
+		printf("Enter 2 to print the list of items purchased by the give age range and gender\n");
 		printf("Enter 3 to find the most visited customer\n");
-		printf("Enter 4 to print the list of items purchased by the give age range and gender\n");
+		printf("Enter 4 to find most frequently purchased item\n");
 		printf("Enter 5 to find the age range of those who purchased the given item\n");
 		printf("Enter -1 to exit\n");
 		printf("Enter the option: ");
@@ -130,23 +126,47 @@ int main()
 	return 0;
 }
 
+void mostVisitedCustomer(customer data[], int size){
+	char items[MAX][30];
+	int k = 0, size_i = 0, *new_items;
+	for(int i=0; i<size; i++){
+		strcpy(items[size_i++], data[i].name);
+	}
+}
+
+void frequentlyPurchasedItems(customer data[], int size){
+	int items[MAX], k = 0, size_i = 0, *new_items;
+	for(int i=0; i<size; i++){
+		for(int j=0; j<data[i].items_size; j++){
+			items[size_i++] = data[i].items[j];
+		}
+	}
+	sort(items, size_i);
+	new_items = freq(items, size_i, &k);
+	for(int i=0; i<k; i++){
+		printf("%s ", ITEMS[new_items[i] - 1]);
+	}
+	printf("\n");
+}
+
 void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
-int ageMax, char gender[]){
-	int items[MAX] = {}, *new_items, size_items = 0, j=0;
+                           int ageMax, char gender[]){
+	int items[MAX], k = 0, size_i = 0, *new_items;
 	for(int i=0; i<size; i++){
 		if(customer_data[i].age >= ageMin &&
 		   customer_data[i].age <= ageMax &&
-		   strcmp(customer_data[i].gender, gender) == 0){
+		   !strcmp(customer_data[i].gender, gender)){
 			for(int j=0; j<customer_data[i].items_size; j++){
-				items[size_items++] = customer_data[i].items[j];
+				items[size_i++] = customer_data[i].items[j];
 			}
 		}
 	}
-	sort(items, size_items);
-	new_items = freq(items, size_items, &j);
-	for(int i=0; i<j; i++){
-		printf("%s ", ITEMS[new_items[i]]);
+	sort(items, size_i);
+	new_items = freq(items, size_i, &k);
+	for(int i=0; i<k; i++){
+		printf("%s ", ITEMS[new_items[i] - 1]);
 	}
+	printf("\n");
 }
 
 void add_customer(customer customer_data[], int x){
@@ -183,29 +203,6 @@ void add_customer(customer customer_data[], int x){
 }
 
 /*
-char* frequentlyPurchasedItems(struct customer data[])
-{
-
-//code goes here @ user
-
-}
-
-char* mostVisitedCustomer(struct customer data[]);
-{
-
-//code goes here @ user
-
-
-}
-
-char* itemsPurchasedInrange(struct customer data[], int ageMin,int ageMax, int gender)
-{
-
-//code goes here @ user
-
-}
-
-
 int* ageRange(struct customer customer_data[])
 {
 
