@@ -64,14 +64,17 @@ void sort(int items[], int size){
 	}
 }
 
-int* remove_duplicates(int arr[], int size){
-	int *new_items = (int*)malloc(size*sizeof(int)), j=0;
-	for(int i=0; i<size-1; i++){
-		if(arr[i] != arr[i+1]){
-			new_items[j++] = arr[i];
+int* freq(int arr[], int size, int* j){
+	int *new_items = (int*)malloc(5*sizeof(int)), flag = 1;
+	for(int i=1; i<size; i++){
+		if(arr[i] == arr[i-1] && flag){
+			new_items[(*j)++] = arr[i];
+			flag = 0;
+		}
+		else if(arr[i] != arr[i-1]){
+			flag = 1;
 		}
 	}
-	new_items[j] = arr[size-1];
 	return new_items;
 }
 
@@ -129,17 +132,21 @@ int main()
 
 void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
 int ageMax, char gender[]){
-	int items[MAX] = {}, *new_items, size_items = 0;
+	int items[MAX] = {}, *new_items, size_items = 0, j=0;
 	for(int i=0; i<size; i++){
-		if(customer_data[i].age >= ageMin && customer_data[i].age <= ageMax && 
+		if(customer_data[i].age >= ageMin &&
+		   customer_data[i].age <= ageMax &&
 		   strcmp(customer_data[i].gender, gender) == 0){
 			for(int j=0; j<customer_data[i].items_size; j++){
-				items[size_i++] = customer_data[i].items[j];
+				items[size_items++] = customer_data[i].items[j];
 			}
 		}
 	}
 	sort(items, size_items);
-	new_items = remove_duplicates(items, size_items);
+	new_items = freq(items, size_items, &j);
+	for(int i=0; i<j; i++){
+		printf("%s ", ITEMS[new_items[i]]);
+	}
 }
 
 void add_customer(customer customer_data[], int x){
