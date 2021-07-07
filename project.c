@@ -64,14 +64,38 @@ void sort(int items[], int size){
 	}
 }
 
-int* freq(int arr[], int size, int* j){
-	int *new_items = (int*)malloc(5*sizeof(int)), flag = 1;
-	for(int i=1; i<size; i++){
-		if(arr[i] == arr[i-1] && flag){
-			new_items[(*j)++] = arr[i];
+int compare_int(void* a, void* b,){
+	int x = *(int*)a;
+	int y = *(int*)b;
+	if(x == y){
+		return 1;
+	}
+	return 0;
+}
+
+int compare_long(void* a, void* b,){
+	long x = *(long*)a;
+	long y = *(long*)b;
+	if(x == y){
+		return 1;
+	}
+	return 0;
+}
+
+void insert(void* a, void* b, size_t size){
+	memcpy(a, b, size);
+}
+
+void* freq(void* arr, size_t size, int len, int* j, int comp(void*, void*){
+	void* new_items = malloc(size);
+	int flag = 1;
+	size_t sizeD = size/len;
+	for(int i=1; i<len; i++){
+		if(compare(arr + i*sizeD, arr + (i-1)*sizeD, 1) && flag){
+			insert(new_items + ((*j)++)*sizeD, arr + (i)*sizeD, sizeD);
 			flag = 0;
 		}
-		else if(arr[i] != arr[i-1]){
+		else if(!compare(arr + i*sizeD, arr + (i-1)*sizeD)){
 			flag = 1;
 		}
 	}
@@ -127,10 +151,19 @@ int main()
 }
 
 void mostVisitedCustomer(customer data[], int size){
-	char items[MAX][30];
+	long number[MAX], new_number;
 	int k = 0, size_i = 0, *new_items;
 	for(int i=0; i<size; i++){
-		strcpy(items[size_i++], data[i].name);
+		number[size_i++] = data[i].mobileNumber;
+	}
+	sort(number, size_i);
+	new_number = (long*)freq(items, size_i * sizeof(long), size_i,  &k, compare_long);
+	for(int i=0; i<size; i++){
+		for(int j=0; j<k; j++){
+			if(new_number[j] == data[i].mobileNumber){
+				printf("%s ", data[i].name);
+			}
+		}
 	}
 }
 
@@ -142,7 +175,7 @@ void frequentlyPurchasedItems(customer data[], int size){
 		}
 	}
 	sort(items, size_i);
-	new_items = freq(items, size_i, &k);
+	new_items = (int*)freq(items, size_i * sizeof(int), size_i,  &k, compare_int);
 	for(int i=0; i<k; i++){
 		printf("%s ", ITEMS[new_items[i] - 1]);
 	}
@@ -162,7 +195,7 @@ void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
 		}
 	}
 	sort(items, size_i);
-	new_items = freq(items, size_i, &k);
+	new_items = (int*)freq(items, size_i * sizeof(int), size_i,  &k, compare_int);
 	for(int i=0; i<k; i++){
 		printf("%s ", ITEMS[new_items[i] - 1]);
 	}
