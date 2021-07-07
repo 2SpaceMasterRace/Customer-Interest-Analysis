@@ -64,7 +64,7 @@ void sort(int items[], int size){
 	}
 }
 
-int compare_int(void* a, void* b,){
+int compare_int(void* a, void* b){
 	int x = *(int*)a;
 	int y = *(int*)b;
 	if(x == y){
@@ -73,7 +73,7 @@ int compare_int(void* a, void* b,){
 	return 0;
 }
 
-int compare_long(void* a, void* b,){
+int compare_long(void* a, void* b){
 	long x = *(long*)a;
 	long y = *(long*)b;
 	if(x == y){
@@ -82,20 +82,20 @@ int compare_long(void* a, void* b,){
 	return 0;
 }
 
-void insert(void* a, void* b, size_t size){
-	memcpy(a, b, size);
+void insert(void* to, void* from, size_t size){
+	memcpy(to, from, size);
 }
 
-void* freq(void* arr, size_t size, int len, int* j, int comp(void*, void*){
+void* freq(void* arr, size_t size, int len, int* j, int comp(void*, void*)){
 	void* new_items = malloc(size);
 	int flag = 1;
 	size_t sizeD = size/len;
 	for(int i=1; i<len; i++){
-		if(compare(arr + i*sizeD, arr + (i-1)*sizeD, 1) && flag){
+		if(comp(arr + i*sizeD, arr + (i-1)*sizeD) && flag){
 			insert(new_items + ((*j)++)*sizeD, arr + (i)*sizeD, sizeD);
 			flag = 0;
 		}
-		else if(!compare(arr + i*sizeD, arr + (i-1)*sizeD)){
+		else if(!comp(arr + i*sizeD, arr + (i-1)*sizeD)){
 			flag = 1;
 		}
 	}
@@ -139,8 +139,7 @@ int main()
 				break;
 			case 2:
 				printf("Enter the gender: ");
-				fgets(gender, 10, stdin);
-				gender[strcspn(gender, "\n")] = 0;
+				scanf("%[^\n]%*c", gender);
 				printf("Enter the age range: ");
 				scanf("%i %i", &ageMin, &ageMax);
 				itemsPurchasedInrange(customer_data, ageMin, N+1, ageMax, gender);
@@ -165,6 +164,7 @@ void mostVisitedCustomer(customer data[], int size){
 			}
 		}
 	}
+	free(new_number);
 }
 
 void frequentlyPurchasedItems(customer data[], int size){
@@ -180,6 +180,7 @@ void frequentlyPurchasedItems(customer data[], int size){
 		printf("%s ", ITEMS[new_items[i] - 1]);
 	}
 	printf("\n");
+	free(new_items);
 }
 
 void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
@@ -200,12 +201,12 @@ void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
 		printf("%s ", ITEMS[new_items[i] - 1]);
 	}
 	printf("\n");
+	free(new_items);
 }
 
 void add_customer(customer customer_data[], int x){
 	printf("Enter the name of the customer: ");
-	fgets(customer_data[x].name, 30, stdin);
-	customer_data[x].name[strcspn(customer_data[x].name, "\n")] = 0;
+	scanf("%[^\n]%*c", customer_data[x].name);
 
 	printf("Enter the mobile number of the cutomer: ");
 	scanf("%ld", &customer_data[x].mobileNumber);
@@ -215,11 +216,11 @@ void add_customer(customer customer_data[], int x){
 	getchar();
 
 	printf("Enter the gender of the customer: ");
-	fgets(customer_data[x].gender, 10, stdin);
-	customer_data[x].gender[strcspn(customer_data[x].gender, "\n")] = 0;
+	scanf("%[^\n]%*c", customer_data[x].gender);
+	
 
 	printf("Enter the purchase date: ");
-	fgets(customer_data[x].date, 10, stdin);
+	scanf("%[^\n]%*c", customer_data[x].date);
 
 	printf("Enter the number of items: ");
 	scanf("%i", &customer_data[x].items_size);
