@@ -24,100 +24,7 @@
  *
  */
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#define MAX 100
-
-/**
- * Implementation of a data-structure to store customer data
- *
- * This structure will hold customer's data like their age, gender, name,
- * data-of-purchase and the list of items purchased.
- *
- */
-typedef struct{
-	int age;
-	char gender[10];
-	char date[10];
-	char name[30];
-	long mobileNumber;
-	int items[20];
-	int items_size;
-}customer;
-
-char ITEMS[MAX][10] = {"T-Shirt", "Shirt", "Jeans", "Jackets", "Pants"};
-char GENDER[2][7] = {"Male", "Gender"};
-
-void swap(void* a, void* b, size_t size){
-	void* temp = malloc(size);
-	memcpy(temp, b, size);
-	memcpy(b, a, size);
-	memcpy(a, temp, size);
-	free(temp);
-}
-
-
-int compare_long_sort(const void* a, const void* b){
-	long x = *(long*)a;
-	long y = *(long*)b;
-	return x-y > 0? 1: 0;
-}
-
-int compare_int_sort(const void* a, const void* b){
-	int x = *(int*)a;
-	int y = *(int*)b;
-	return x-y;
-}
-
-void sort(void* arr, size_t size, size_t d_size, int compare(const void*, const void*)){
-	int flag;
-	for(int i=0; i<size; i++){
-		flag = 1;
-		for(int j=0; j<size-1-i; j++){
-			if(compare(arr + (j)*d_size, arr + (j+1)*d_size) > 0){
-				swap(arr + (j)*d_size, arr + (j+1)*d_size, d_size);
-				flag = 0;
-			}
-		}
-		if(flag){
-			break;
-		}
-	}
-}
-
-int compare_int(void* a, void* b){
-	int x = *(int*)a;
-	int y = *(int*)b;
-	if(x == y){
-		return 1;
-	}
-	return 0;
-}
-
-int compare_long(void* a, void* b){
-	long x = *(long*)a;
-	long y = *(long*)b;
-	if(x == y){
-		return 1;
-	}
-	return 0;
-}
-
-void* freq(void* arr, size_t size, int len, int* j, int comp(void*, void*)){
-	void* new_items = malloc(size);
-	int flag = 1;
-	size_t sizeD = size/len;
-	for(int i=1; i<len; i++){
-		if(comp(arr + i*sizeD, arr + (i-1)*sizeD) && flag){
-			memcpy(new_items + ((*j)++)*sizeD, arr + (i)*sizeD, sizeD);
-			flag = 0;
-		}
-		else if(!comp(arr + i*sizeD, arr + (i-1)*sizeD)){
-			flag = 1;
-		}
-	}
-	return new_items;
-}
+#include "utils.h"
 
 // FUNCTION DEFINITIONS
 void add_customer(customer customer_data[], int x);
@@ -126,7 +33,6 @@ void mostVisitedCustomer(customer data[], int size);
 void ageRange(customer data[], int ageMin, int ageMax);
 void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
                            int ageMax, char gender[]);
-
 
 int main()
 {
@@ -167,13 +73,13 @@ int main()
 }
 
 void mostVisitedCustomer(customer data[], int size){
-	long number[MAX], new_number;
-	int k = 0, size_i = 0, *new_items;
+	long number[MAX], *new_number;
+	int k = 0, size_i = 0;
 	for(int i=0; i<size; i++){
 		number[size_i++] = data[i].mobileNumber;
 	}
-	sort(number, size_i);
-	new_number = (long*)freq(items, size_i * sizeof(long), size_i,  &k, compare_long);
+	sort(number, size_i, sizeof(long), compare_long_sort);
+	new_number = (long*)freq(number, size_i * sizeof(long), size_i,  &k, compare_long);
 	for(int i=0; i<size; i++){
 		for(int j=0; j<k; j++){
 			if(new_number[j] == data[i].mobileNumber){
@@ -191,7 +97,7 @@ void frequentlyPurchasedItems(customer data[], int size){
 			items[size_i++] = data[i].items[j];
 		}
 	}
-	sort(items, size_i);
+	sort(items, size_i, sizeof(int), compare_int_sort);
 	new_items = (int*)freq(items, size_i * sizeof(int), size_i,  &k, compare_int);
 	for(int i=0; i<k; i++){
 		printf("%s ", ITEMS[new_items[i] - 1]);
@@ -212,7 +118,7 @@ void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
 			}
 		}
 	}
-	sort(items, size_i);
+	sort(items, size_i, sizeof(int), compare_int_sort);
 	new_items = (int*)freq(items, size_i * sizeof(int), size_i,  &k, compare_int);
 	for(int i=0; i<k; i++){
 		printf("%s ", ITEMS[new_items[i] - 1]);
