@@ -40,6 +40,7 @@ int main()
 	customer customer_data[MAX];
 	int option = 0, ageMin, ageMax, n, N, i;
 	char gender[10];
+
 	while(option != -1){
 		i = 0;
 
@@ -67,6 +68,14 @@ int main()
 				scanf("%i %i", &ageMin, &ageMax);
 				itemsPurchasedInrange(customer_data, ageMin, N+1, ageMax, gender);
 				break;
+			case 3:
+				mostVisitedCustomer(customer_data, N);
+				break;
+			case 4:
+				frequentlyPurchasedItems(customer_data, N);
+				break;
+			case 5:
+				break;
 		}
 	}
 	return 0;
@@ -84,6 +93,7 @@ void mostVisitedCustomer(customer data[], int size){
 		for(int j=0; j<k; j++){
 			if(new_number[j] == data[i].mobileNumber){
 				printf("%s ", data[i].name);
+				break;
 			}
 		}
 	}
