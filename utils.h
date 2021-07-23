@@ -19,7 +19,7 @@ int compare_int(const void* a, const void* b);
 int compare_long(const void* a, const void* b);
 
 void sort(void* arr, size_t size, size_t d_size, int compare(const void*, const void*));
-void* freq(void* arr, size_t size, int len, int* j, int comp(const void*, const void*));
+void* common(void* arr, size_t size, int len, int* j, int comp(const void*, const void*));
 
 /**
  * Implementation of a data-structure to store customer data
@@ -29,13 +29,9 @@ void* freq(void* arr, size_t size, int len, int* j, int comp(const void*, const 
  *
  */
 typedef struct{
-	int age;
-	char gender[10];
-	char date[10];
-	char name[30];
+	int age, gender, items[20], items_size;
+	char date[10], name[30];
 	long mobileNumber;
-	int items[20];
-	int items_size;
 }customer;
 
 void swap(void* a, void* b, size_t size){
@@ -92,7 +88,7 @@ int compare_long(const void* a, const void* b){
 	return 0;
 }
 
-void* freq(void* arr, size_t size, int len, int* j, int comp(const void*, const void*)){
+void* common(void* arr, size_t size, int len, int* j, int comp(const void*, const void*)){
 	void* new_items = malloc(size);
 	int flag = 1;
 	size_t sizeD = size/len;
