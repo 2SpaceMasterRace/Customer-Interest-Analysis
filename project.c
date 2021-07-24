@@ -70,6 +70,7 @@ int main()
 				scanf("%i", &gender);
 				printf("Enter the age range: ");
 				scanf("%i %i", &ageMin, &ageMax);
+				getchar();
 				itemsPurchasedInrange(customer_data, ageMin, N, ageMax, gender);
 				break;
 			case 3:
@@ -88,6 +89,7 @@ int main()
 				printf("Press 5 for Pants\n");
 				printf("Enter the item: ");
 				scanf("%i", &item);
+				getchar();
 				ageRange(customer_data, N, item);
 				break;
 		}
@@ -104,10 +106,10 @@ void mostVisitedCustomer(customer data[], int size){
 	}
 	sort(number, size_i, sizeof(long), compare_long_sort);
 	new_number = (long*)common(number, size_i * sizeof(long), size_i,  &k, compare_long);
-	for(int i=0; i<size; i++){
-		for(int j=0; j<k; j++){
-			if(new_number[j] == data[i].mobileNumber){
-				printf("%s ", data[i].name);
+	for(int i=0; i<k; i++){
+		for(int j=0; j<size; j++){
+			if(new_number[i] == data[j].mobileNumber){
+				printf("%s ", data[j].name);
 				break;
 			}
 		}
@@ -213,5 +215,4 @@ void ageRange(customer customer_data[], int size, int item){
 	else if (maxage>49 ){
 		printf("\nITEM BELONGS TO ELDERLY CATEGORY");
 	}
-	getchar();
 }
