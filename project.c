@@ -41,17 +41,31 @@ int main()
 {
     // driver code
 	customer customer_data[MAX];
-	int option = 0, ageMin, ageMax, N, gender, item;
+	int option = -1, ageMin, ageMax, N, gender, item;
 
-	while(option != -1){
+	system("clear");
+	newlines(lines);
+	tabs(tab+2);
+	printf("Customer Interest Analysis");
+	getchar();
+
+	while(option != 0){
 		// INPUTS:
 		system("clear");
+		newlines(lines);
+		tabs(tab);
 		printf("Enter 1 to add purchase details of the customer\n");
+		tabs(tab);
 		printf("Enter 2 to print the list of items purchased by the give age range and gender\n");
+		tabs(tab);
 		printf("Enter 3 to find the most visited customer\n");
+		tabs(tab);
 		printf("Enter 4 to find most frequently purchased item\n");
+		tabs(tab);
 		printf("Enter 5 to find the age range of those who purchased the given item\n");
-		printf("Enter -1 to exit\n");
+		tabs(tab);
+		printf("Enter 0 to exit\n");
+		tabs(tab);
 		printf("Enter the option: ");
 
 		scanf("%d", &option);
@@ -59,15 +73,22 @@ int main()
 
 		switch(option){
 			case 1:
-				printf("\n");
+				system("clear");
+				newlines(lines);
 				add_customer(customer_data, N);
 				N++;
 				break;
 			case 2:
-				printf("\nPress 1 for Male\n");
+				system("clear");
+				newlines(lines);
+				tabs(tab);
+				printf("Press 1 for Male\n");
+				tabs(tab);
 				printf("Press 2 for Female\n");
+				tabs(tab);
 				printf("Enter the gender of the customer: ");
 				scanf("%i", &gender);
+				tabs(tab);
 				printf("Enter the age range: ");
 				scanf("%i %i", &ageMin, &ageMax);
 				getchar();
@@ -82,11 +103,27 @@ int main()
 				frequentlyPurchasedItems(customer_data, N);
 				break;
 			case 5:
-				printf("\nPress 1 for T-Shirt\n");
+				system("clear");
+				newlines(lines);
+				tabs(tab);
+				printf("Press 1 for T-Shirt\n");
+				tabs(tab);
 				printf("Press 2 for Shirt\n");
+				tabs(tab);
 				printf("Press 3 for Jeans\n");
+				tabs(tab);
 				printf("Press 4 for Jackets\n");
+				tabs(tab);
 				printf("Press 5 for Pants\n");
+				tabs(tab);
+				printf("Press 6 for Coats\n");
+				tabs(tab);
+				printf("Press 7 for Blazers\n");
+				tabs(tab);
+				printf("Press 8 for Tuxedo\n");
+				tabs(tab);
+				printf("Press 9 for Sweaters\n");
+				tabs(tab);
 				printf("Enter the item: ");
 				scanf("%i", &item);
 				getchar();
@@ -106,10 +143,17 @@ void mostVisitedCustomer(customer data[], int size){
 	}
 	sort(number, size_i, sizeof(long), compare_long_sort);
 	new_number = (long*)common(number, size_i * sizeof(long), size_i,  &k, compare_long);
+
+	system("clear");
+	newlines(lines);
+	tabs(tab);
+
+	printf("Most Visited Customer : ");
+
 	for(int i=0; i<k; i++){
 		for(int j=0; j<size; j++){
 			if(new_number[i] == data[j].mobileNumber){
-				printf("%s ", data[j].name);
+				printf("%s, ", data[j].name);
 				break;
 			}
 		}
@@ -126,16 +170,22 @@ void frequentlyPurchasedItems(customer data[], int size){
 	}
 	sort(items, size_i, sizeof(int), compare_int_sort);
 	new_items = (int*)common(items, size_i * sizeof(int), size_i,  &k, compare_int);
+
+	system("clear");
+	newlines(lines);
+	tabs(tab);
+
+	printf("Frequently purchase items : ");
+
 	for(int i=0; i<k; i++){
-		printf("%s ", ITEMS[new_items[i] - 1]);
+		printf("%s, ", ITEMS[new_items[i] - 1]);
 	}
-	printf("\n");
 	free(new_items);
 }
 
 void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
                            int ageMax, int gender){
-	int items[MAX], k = 0, size_i = 0, *new_items;
+	int items[MAX], k = 0, size_i = 0, *new_items, tab=9;
 	for(int i=0; i<size; i++){
 		if(customer_data[i].age >= ageMin &&
 		   customer_data[i].age <= ageMax &&
@@ -147,42 +197,71 @@ void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
 	}
 	sort(items, size_i, sizeof(int), compare_int_sort);
 	new_items = (int*)common(items, size_i * sizeof(int), size_i,  &k, compare_int);
+
+	system("clear");
+	newlines(lines);
+	tabs(tab);
+
+	printf("Items : ");
+
 	for(int i=0; i<k; i++){
-		printf("%s ", ITEMS[new_items[i] - 1]);
+		printf("%s, ", ITEMS[new_items[i] - 1]);
 	}
-	printf("\n");
 	free(new_items);
 }
 
 void add_customer(customer customer_data[], int x){
+
+	tabs(tab);
 	printf("Enter the name of the customer: ");
 	scanf("%[^\n]%*c", customer_data[x].name);
 	
+	tabs(tab);
 	printf("Enter the mobile number of the cutomer: ");
 	scanf("%ld", &customer_data[x].mobileNumber);
 	
+	tabs(tab);
 	printf("Enter the age of the customer: ");
 	scanf("%d", &customer_data[x].age);
 	getchar();
 	
+	tabs(tab);
 	printf("Press 1 for Male\n");
+	tabs(tab);
 	printf("Press 2 for Female\n");
+	tabs(tab);
 	printf("Enter the gender of the customer: ");
 	scanf("%i", &customer_data[x].gender);
 	getchar();
 
-	printf("Enter the purchase date: ");
-	scanf("%[^\n]%*c", customer_data[x].date);
-
+	tabs(tab);
 	printf("Enter the number of items: ");
 	scanf("%i", &customer_data[x].items_size);
 
+	int tab = 9;
+
 	for(int i=0; i<customer_data[x].items_size; i++){
-		printf("\nPress 1 for T-Shirt\n");
+		system("clear");
+		newlines(lines);
+		tabs(tab);
+		printf("Press 1 for T-Shirt\n");
+		tabs(tab);
 		printf("Press 2 for Shirt\n");
+		tabs(tab);
 		printf("Press 3 for Jeans\n");
+		tabs(tab);
 		printf("Press 4 for Jackets\n");
+		tabs(tab);
 		printf("Press 5 for Pants\n");
+		tabs(tab);
+		printf("Press 6 for Coats\n");
+		tabs(tab);
+		printf("Press 7 for Blazers\n");
+		tabs(tab);
+		printf("Press 8 for Tuxedo\n");
+		tabs(tab);
+		printf("Press 9 for Sweaters\n");
+		tabs(tab);
 		printf("Enter the option: ");
 		scanf("%i", &customer_data[x].items[i]);
 	}
@@ -200,19 +279,26 @@ void ageRange(customer customer_data[], int size, int item){
 			}
 		}
 	}
+
+	system("clear");
+	newlines(lines);
+	tabs(tab);
+
+	printf("Category : ");
+
 	if(maxage>0 && maxage<18){
-		printf("\nITEM BELONGS TO UNDER 18 CATEGORY");
+		printf("ITEM BELONGS TO UNDER 18 CATEGORY");
 	}
-	else if (maxage>18 && maxage<25){
-		printf("\nITEM BELONGS TO EARLY 20S CATEGORY");
+	else if (maxage>=18 && maxage<25){
+		printf("ITEM BELONGS TO EARLY 20S CATEGORY");
 	}
-	else if (maxage>25 && maxage<30 ){
-		printf("\nITEM BELONGS TO LATE 20S CATEGORY");
+	else if (maxage>=25 && maxage<30 ){
+		printf("ITEM BELONGS TO LATE 20S CATEGORY");
 	}
-	else if (maxage>30 && maxage<49 ){
-		printf("\nITEM BELONGS TO MIDDLE AGE CATEGORY");
+	else if (maxage>=30 && maxage<49 ){
+		printf("ITEM BELONGS TO MIDDLE AGE CATEGORY");
 	}
-	else if (maxage>49 ){
-		printf("\nITEM BELONGS TO ELDERLY CATEGORY");
+	else if (maxage>=49 ){
+		printf("ITEM BELONGS TO ELDERLY CATEGORY");
 	}
 }

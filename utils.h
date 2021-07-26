@@ -7,8 +7,10 @@
 #include <string.h>
 #define MAX 100
 
-char ITEMS[MAX][10] = {"T-Shirt", "Shirt", "Jeans", "Jackets", "Pants"};
-char GENDER[2][7] = {"Male", "Gender"};
+char ITEMS[MAX][10] = {
+	"T-Shirts", "Shirts", "Jeans", "Jackets", "Pants",
+		"Coats", "Blazers", "Tuxedo", "Sweaters"
+};
 
 // FUNTION DEFINITIONS
 void swap(void* a, void* b, size_t size);
@@ -21,6 +23,9 @@ int compare_long(const void* a, const void* b);
 void sort(void* arr, size_t size, size_t d_size, int compare(const void*, const void*));
 void* common(void* arr, size_t size, int len, int* j, int comp(const void*, const void*));
 
+void newlines(int num);
+void tabs(int num);
+
 /**
  * Implementation of a data-structure to store customer data
  *
@@ -30,9 +35,21 @@ void* common(void* arr, size_t size, int len, int* j, int comp(const void*, cons
  */
 typedef struct{
 	int age, gender, items[20], items_size;
-	char date[10], name[30];
+	char name[30];
 	long mobileNumber;
 }customer;
+
+void newlines(int num){
+	for(int i=0; i<num; i++){
+		printf("\n");
+	}
+}
+
+void tabs(int num){
+	for(int i=0; i<num; i++){
+		printf("\t");
+	}
+}
 
 void swap(void* a, void* b, size_t size){
 	void* temp = malloc(size);
