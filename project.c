@@ -25,7 +25,18 @@
  */
 #include <unistd.h>
 #include <stdio.h>
-#include "utils.h"
+#include "utils.c"
+
+char ITEMS[MAX][10] = {
+	"Jersey", "Shirts", "Jeans", "Jackets", "Pants",
+		"Coats", "Blazers", "Tuxedo", "Tracks ",
+};
+
+typedef struct{
+	int age, gender, items[20], items_size;
+	char name[30];
+	long mobileNumber;
+}customer;
 
 // FUNCTION DEFINITIONS
 void add_customer(customer customer_data[], int x);
@@ -34,6 +45,10 @@ void mostVisitedCustomer(customer data[], int size);
 void ageRange(customer data[], int size, int item);
 void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
                            int ageMax, int gender);
+
+void newlines(int num);
+void tabs(int num);
+
 int lines = 19;
 int tab = 7;
 
@@ -106,7 +121,7 @@ int main()
 				system("clear");
 				newlines(lines);
 				tabs(tab);
-				printf("Press 1 for T-Shirt\n");
+				printf("Press 1 for Jersey\n");
 				tabs(tab);
 				printf("Press 2 for Shirt\n");
 				tabs(tab);
@@ -122,7 +137,7 @@ int main()
 				tabs(tab);
 				printf("Press 8 for Tuxedo\n");
 				tabs(tab);
-				printf("Press 9 for Sweaters\n");
+				printf("Press 9 for Track suit\n");
 				tabs(tab);
 				printf("Enter the item: ");
 				scanf("%i", &item);
@@ -135,25 +150,44 @@ int main()
 	return 0;
 }
 
+void newlines(int num){
+	for(int i=0; i<num; i++){
+		printf("\n");
+	}
+}
+
+void tabs(int num){
+	for(int i=0; i<num; i++){
+		printf("\t");
+	}
+}
+
 void mostVisitedCustomer(customer data[], int size){
 	long number[MAX], *new_number;
-	int k = 0, size_i = 0;
+	int k = 0, index = 0, count[MAX]={};
 	for(int i=0; i<size; i++){
-		number[size_i++] = data[i].mobileNumber;
+		number[index++] = data[i].mobileNumber;
 	}
-	sort(number, size_i, sizeof(long), compare_long_sort);
-	new_number = (long*)common(number, size_i * sizeof(long), size_i,  &k, compare_long);
+	sort(number, index, sizeof(long), compare_long_sort);
+	new_number = common(number, sizeof(long), index,  &k, compare_long, count);
+
+	int tab = 9;
 
 	system("clear");
 	newlines(lines);
 	tabs(tab);
 
-	printf("Most Visited Customer : ");
+	printf("Most Visited Customer\n\n");
+	tabs(tab);
+	printf("Name\tVisitation Count\n");
+	tabs(tab);
+	printf("------------------------\n");
 
 	for(int i=0; i<k; i++){
 		for(int j=0; j<size; j++){
 			if(new_number[i] == data[j].mobileNumber){
-				printf("%s, ", data[j].name);
+				tabs(tab);
+				printf("%s - %i\n", data[j].name, count[i]);
 				break;
 			}
 		}
@@ -162,50 +196,65 @@ void mostVisitedCustomer(customer data[], int size){
 }
 
 void frequentlyPurchasedItems(customer data[], int size){
-	int items[MAX], k = 0, size_i = 0, *new_items;
+	int items[MAX], k = 0, index = 0, *new_items, count[MAX]={};
 	for(int i=0; i<size; i++){
 		for(int j=0; j<data[i].items_size; j++){
-			items[size_i++] = data[i].items[j];
+			items[index++] = data[i].items[j];
 		}
 	}
-	sort(items, size_i, sizeof(int), compare_int_sort);
-	new_items = (int*)common(items, size_i * sizeof(int), size_i,  &k, compare_int);
+	sort(items, index, sizeof(int), compare_int_sort);
+	new_items = common(items, sizeof(int), index,  &k, compare_int, count);
 
 	system("clear");
 	newlines(lines);
-	tabs(tab);
 
-	printf("Frequently purchase items : ");
+	int tab = 9;
+
+	tabs(tab);
+	printf("Frequently purchased items\n\n");
+	tabs(tab);
+	printf("Items\t\tCount\n");
+	tabs(tab);
+	printf("---------------------\n");
 
 	for(int i=0; i<k; i++){
-		printf("%s, ", ITEMS[new_items[i] - 1]);
+		tabs(tab);
+		printf("%s\t   |\t%i\n", ITEMS[new_items[i] - 1], count[i]);
 	}
 	free(new_items);
 }
 
 void itemsPurchasedInrange(customer customer_data[], int ageMin, int size,
                            int ageMax, int gender){
-	int items[MAX], k = 0, size_i = 0, *new_items, tab=9;
+	int items[MAX], count[MAX] = {}, k = 0, index = 0, *new_items;
 	for(int i=0; i<size; i++){
 		if(customer_data[i].age >= ageMin &&
 		   customer_data[i].age <= ageMax &&
 		   customer_data[i].gender == gender){
 			for(int j=0; j<customer_data[i].items_size; j++){
-				items[size_i++] = customer_data[i].items[j];
+				items[index++] = customer_data[i].items[j];
 			}
 		}
 	}
-	sort(items, size_i, sizeof(int), compare_int_sort);
-	new_items = (int*)common(items, size_i * sizeof(int), size_i,  &k, compare_int);
+	sort(items, index, sizeof(int), compare_int_sort);
+	new_items = common(items, sizeof(int), index,  &k, compare_int, count);
 
 	system("clear");
 	newlines(lines);
 	tabs(tab);
 
-	printf("Items : ");
+	printf("\tFrequently Purchased items based on age and gender\n\n");
+
+	int tab = 9;
+
+	tabs(tab);
+	printf("Items\t\tCount\n");
+	tabs(tab);
+	printf("---------------------\n");
 
 	for(int i=0; i<k; i++){
-		printf("%s, ", ITEMS[new_items[i] - 1]);
+		tabs(tab);
+		printf("%s\t   |\t%i\n", ITEMS[new_items[i] - 1], count[i]);
 	}
 	free(new_items);
 }
@@ -244,7 +293,7 @@ void add_customer(customer customer_data[], int x){
 		system("clear");
 		newlines(lines);
 		tabs(tab);
-		printf("Press 1 for T-Shirt\n");
+		printf("Press 1 for Jersey\n");
 		tabs(tab);
 		printf("Press 2 for Shirt\n");
 		tabs(tab);
@@ -260,7 +309,7 @@ void add_customer(customer customer_data[], int x){
 		tabs(tab);
 		printf("Press 8 for Tuxedo\n");
 		tabs(tab);
-		printf("Press 9 for Sweaters\n");
+		printf("Press 9 for Track suit\n");
 		tabs(tab);
 		printf("Enter the option: ");
 		scanf("%i", &customer_data[x].items[i]);
@@ -268,37 +317,19 @@ void add_customer(customer customer_data[], int x){
 }
 
 void ageRange(customer customer_data[], int size, int item){
-	int maxage = 0, age;
+	int age[MAX], index=0;
 	for(int i=0; i<size; i++){
 		for(int j=0; j<customer_data[i].items_size; j++){
 			if(customer_data[i].items[j] == item){
-				age = customer_data[i].age;
-				if(age > maxage){
-					maxage = age;
-				}
+				age[index++] = customer_data[i].age;
 			}
 		}
 	}
+	sort(age, index, sizeof(int), compare_int_sort);
 
 	system("clear");
 	newlines(lines);
-	tabs(tab);
+	tabs(tab+2);
 
-	printf("Category : ");
-
-	if(maxage>0 && maxage<18){
-		printf("ITEM BELONGS TO UNDER 18 CATEGORY");
-	}
-	else if (maxage>=18 && maxage<25){
-		printf("ITEM BELONGS TO EARLY 20S CATEGORY");
-	}
-	else if (maxage>=25 && maxage<30 ){
-		printf("ITEM BELONGS TO LATE 20S CATEGORY");
-	}
-	else if (maxage>=30 && maxage<49 ){
-		printf("ITEM BELONGS TO MIDDLE AGE CATEGORY");
-	}
-	else if (maxage>=49 ){
-		printf("ITEM BELONGS TO ELDERLY CATEGORY");
-	}
+	printf("Category : %i - %i age", age[0], age[index-1]);
 }
