@@ -31,7 +31,7 @@ Customer Interest Analysis is the Final First Year Project ( Group 3 )  of Elect
 
 # Functionalities and ETA 
 
-<img hight="600" width="600" alt="jpg" align="right" src="https://user-images.githubusercontent.com/82216693/122652209-32d54980-d15b-11eb-8fb5-4f1fce338b2a.jpg"> 
+<img hight="700" width="600" alt="jpg" align="right" src="https://user-images.githubusercontent.com/82216693/122652209-32d54980-d15b-11eb-8fb5-4f1fce338b2a.jpg"> 
 
 
 The Functionalities includes : 
