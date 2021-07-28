@@ -2,7 +2,7 @@
 
 # What is this project? 
 
-Customer Interest Analysis is the final First Year Project ( Group 3 )  of Electrical And Computer Engineering at Amrita Vishwa Vidyapeetham implementing what we have learnt through the year by building a real world application  
+Customer Interest Analysis is the Final First Year Project ( Group 3 )  of Electrical And Computer Engineering at Amrita Vishwa Vidyapeetham implementing what we have learnt through the year by building a real world application  
 
 
 
