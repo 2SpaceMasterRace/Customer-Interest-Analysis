@@ -25,6 +25,7 @@
  */
 #include <unistd.h>
 #include <stdio.h>
+#include <math.h>
 #include "utils.c"
 
 char ITEMS[MAX][10] = {
@@ -268,12 +269,19 @@ void add_customer(customer customer_data[], int x){
 	tabs(tab);
 	printf("Enter the mobile number of the cutomer: ");
 	scanf("%ld", &customer_data[x].mobileNumber);
+
+	while(ceil(log10(customer_data[x].mobileNumber)) != 10){
+		system("clear");
+		newlines(lines);
+		tabs(tab);
+		printf("Enter a proper 10 digit mobile number: ");
+		scanf("%ld", &customer_data[x].mobileNumber);
+	}
 	
 	tabs(tab);
 	printf("Enter the age of the customer: ");
 	scanf("%d", &customer_data[x].age);
-	getchar();
-	
+
 	tabs(tab);
 	printf("Press 1 for Male\n");
 	tabs(tab);
@@ -281,7 +289,6 @@ void add_customer(customer customer_data[], int x){
 	tabs(tab);
 	printf("Enter the gender of the customer: ");
 	scanf("%i", &customer_data[x].gender);
-	getchar();
 
 	tabs(tab);
 	printf("Enter the number of items: ");
@@ -331,5 +338,9 @@ void ageRange(customer customer_data[], int size, int item){
 	newlines(lines);
 	tabs(tab+2);
 
+	if(index == 0){
+		printf("Cannot find the category, the item is not purchased");
+		return;
+	}
 	printf("Category : %i - %i age", age[0], age[index-1]);
 }
