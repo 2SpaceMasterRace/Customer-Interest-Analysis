@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "utils.c"
+#define MAX 100
 
 char ITEMS[MAX][10] = {
 	"Jersey", "Shirts", "Jeans", "Jackets", "Pants",
