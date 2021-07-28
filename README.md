@@ -2,7 +2,7 @@
 
 # What is this project? 
 
-Customer Interest Analysis is the final First Semester Project ( Group 3 )  of Electrical And Computer Engineering at Amrita Vishwa Vidyapeetham implementing what we have learnt throught the year by building a real world application  
+Customer Interest Analysis is the final First Year Project ( Group 3 )  of Electrical And Computer Engineering at Amrita Vishwa Vidyapeetham implementing what we have learnt through the year by building a real world application  
 
 
 
@@ -13,11 +13,13 @@ Customer Interest Analysis is the final First Semester Project ( Group 3 )  of E
 
    <img hight="750" width="650" alt="jpg" align="middle" src="https://user-images.githubusercontent.com/82216693/122651978-ce65ba80-d159-11eb-8843-8b90fd91b0ca.jpg"> 
 
+## TL;DR :
+
 - Companies can get a bigger picture of their audience and makes it easier to narrow down specific customer category to curate special offers  
 
 - This application comes with the most core features that is essential on analysing the data given  
 
-- All the variables of the customer market is factored in as per the instructions given to the group 
+- All variables of the customer market is factored in as per the instructions given to the group 
 
                     
 
@@ -44,17 +46,17 @@ The Functionalities includes :
 
 - *Find Most Visited Customer* 
 
-  To find the predominant audience base for the products 
+  To find the predominant audience base of the product
 
 - *Find List Of Items Based On Frequency Count For A Given Age Gender Range* 
 
-  To find the products that has majority of shares given in a paticular customer base
+  To find the products that has the majority of sales given in a paticular customer base
  
  - *Find Age Range Of Customers Who Purchased A Given Item* 
    
-   To target the specific customers market based on the product sold 
+   To target specific customer market based on the product sold 
   
- ETA is estimated to be 2 weeks working part time on it 
+ ETA is estimated to be 35 days working part time on it 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -75,15 +77,11 @@ This project is licensed under the MIT License - see the MIT.md file for details
 
 ![4](https://user-images.githubusercontent.com/82216693/122652394-42a15d80-d15c-11eb-8fb4-a8ee9c126c75.jpg)
 
-@username - what they did
 
-@username - what they did
+@[Ashborn-SM](https://github.com/Ashborn-SM) - Lead Developer
 
-@[2SpaceMasterRace](https://github.com/2SpaceMasterRace) - Find Age Range Of Customers Who Purchased A Given Item
+@[2SpaceMasterRace](https://github.com/2SpaceMasterRace) - Project Architect
 
-@username - what they did
-
-@username - what they did
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
