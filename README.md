@@ -11,27 +11,27 @@ Customer Interest Analysis is the final First Year Project ( Group 3 )  of Elect
 
 # What is the MVP here ?
 
-   <img hight="750" width="650" alt="jpg" align="middle" src="https://user-images.githubusercontent.com/82216693/122651978-ce65ba80-d159-11eb-8843-8b90fd91b0ca.jpg"> 
+   <img hight="650" width="600" alt="jpg" align="centre" src="https://user-images.githubusercontent.com/82216693/122651978-ce65ba80-d159-11eb-8843-8b90fd91b0ca.jpg"> 
 
 ## TL;DR :
 
-- Companies can get a bigger picture of their audience and makes it easier to narrow down specific customer category to curate special offers  
+ - Companies can get a bigger picture of their audience and makes it easier to narrow down specific customer category to curate special offers  
 
-- This application comes with the most core features that is essential on analysing the data given  
+ - This application comes with the most core features that is essential on analysing the data given  
 
-- All variables of the customer market is factored in as per the instructions given to the group 
+ - All variables of the customer market is factored in as per the instructions given to the group 
 
                     
 
 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
 # Functionalities and ETA 
 
-<img hight="700" width="600" alt="jpg" align="right" src="https://user-images.githubusercontent.com/82216693/122652209-32d54980-d15b-11eb-8fb5-4f1fce338b2a.jpg"> 
+<img hight="800" width="550" alt="jpg" align="right" src="https://user-images.githubusercontent.com/82216693/122652209-32d54980-d15b-11eb-8fb5-4f1fce338b2a.jpg"> 
 
 
 The Functionalities includes : 
